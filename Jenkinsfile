@@ -1,5 +1,7 @@
 pipeline {
-  stages {
+  agent {
+  }
+    stages {
     stage('Syntax Check') {
       parallel {
         stage('OpenModelica') {
