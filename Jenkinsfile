@@ -8,8 +8,7 @@ pipeline {
   stages {
     stage('Syntax Check') {
       steps {
-        sh '''cd BioChem
-echo > check.mos << EOL
+        sh '''echo > check.mos << EOL
 b := loadFile("BioChem/package.mo");getErrorString();
 if b then
   exit(0);
@@ -17,6 +16,7 @@ end if;
 exit(1);
 EOL
 ls
+cat check.mos
 omc check.mos'''
       }
     }
