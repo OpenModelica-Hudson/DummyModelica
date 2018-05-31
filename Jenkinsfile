@@ -15,6 +15,7 @@ if b then
 end if;
 exit(1);
 EOL
+ls
 omc check.mos'''
       }
     }
