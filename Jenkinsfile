@@ -1,14 +1,13 @@
 pipeline {
-  agent {
-    docker {
-      image 'openmodelica/openmodelica:nightly'
-    }
-
-  }
   stages {
     stage('Syntax Check') {
       parallel {
         stage('OpenModelica') {
+  agent {
+    docker {
+      image 'openmodelica/openmodelica:nightly'
+    }
+  }
           steps {
             sh '''cat - > check.mos << EOL
 b := loadFile("BioChem/package.mo");getErrorString();
