@@ -8,7 +8,14 @@ pipeline {
   stages {
     stage('Syntax Check') {
       steps {
-        sh 'omc --help'
+        sh '''echo > check.mos << EOL
+b := loadFile("BioChem/package.mo");getErrorString();
+if b then
+  exit(0);
+end if;
+exit(1);
+EOL
+omc check.mos'''
       }
     }
   }
