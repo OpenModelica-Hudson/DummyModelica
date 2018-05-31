@@ -7,8 +7,10 @@ pipeline {
   }
   stages {
     stage('Syntax Check') {
-      steps {
-        sh '''cat - > check.mos << EOL
+      parallel {
+        stage('OpenModelica') {
+          steps {
+            sh '''cat - > check.mos << EOL
 b := loadFile("BioChem/package.mo");getErrorString();
 if b then
   exit(0);
@@ -18,6 +20,19 @@ EOL
 ls
 cat check.mos
 omc check.mos'''
+          }
+        }
+        stage('moparser') {
+          agent {
+            docker {
+              image 'openmodelica/moparser'
+            }
+
+          }
+          steps {
+            sh 'moparser -r -v 2.2 BioChem'
+          }
+        }
       }
     }
   }
