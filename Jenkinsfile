@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'openmodelica/openmodelica:nightly'
+    }
+
+  }
   stages {
     stage('Syntax Check') {
       steps {
