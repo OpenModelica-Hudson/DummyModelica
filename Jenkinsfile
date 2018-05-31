@@ -1,10 +1,5 @@
 pipeline {
-  agent {
-    node {
-      label 'docker'
-    }
-
-  }
+  agent any
   stages {
     stage('Syntax Check') {
       agent {
@@ -14,10 +9,7 @@ pipeline {
 
       }
       steps {
-        timeout(time: 60, activity: true) {
-          sh 'omc --help'
-        }
-
+        sh 'omc --help'
       }
     }
   }
