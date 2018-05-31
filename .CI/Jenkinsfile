@@ -10,7 +10,7 @@ pipeline {
             }
           }
           steps {
-            sh 'omc check.mos'
+            sh 'omc .CI/check.mos'
           }
         }
         stage('moparser') {
