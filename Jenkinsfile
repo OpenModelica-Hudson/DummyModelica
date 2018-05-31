@@ -2,13 +2,7 @@ pipeline {
   agent any
   stages {
     stage('Syntax Check') {
-      agent {
-        docker {
-          image 'openmodelica/openmodelica:nightly'
-        }
-
-      }
-      steps {
+      docker.image('openmodelica/openmodelica:nightly').inside {
         sh 'omc --help'
       }
     }
