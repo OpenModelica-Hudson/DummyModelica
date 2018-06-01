@@ -2,8 +2,8 @@ language: generic
 services:
   - docker
 before_install:
-  - docker pull openmodelica/openmodelica:v1.12.0-minimal
-  - docker pull openmodelica/moparser
+  - time docker pull openmodelica/openmodelica:v1.12.0-minimal
+  - time docker pull openmodelica/moparser
 script:
   - docker run -v "$PWD:$PWD" openmodelica/openmodelica:v1.12.0-minimal omc --help
   - docker run -v "$PWD:$PWD" openmodelica/moparser moparser -r -v 2.2 BioChem
