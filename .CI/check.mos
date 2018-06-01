@@ -1,4 +1,4 @@
-b := loadFile("BioChem/package.mo");
+b := loadFile("BioChem/package.mo", uses=false);
 (numMessages,numError,numWarning):=countMessages();
 getErrorString();
 if b and numError==0 and numWarning==0 then
