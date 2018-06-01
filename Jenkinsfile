@@ -10,7 +10,18 @@ pipeline {
             }
           }
           steps {
-            sh 'omc .CI/check.mos'
+            sh '''
+cat - > check.mos << EOF
+b := loadFile("BioChem/package.mo", uses=false);
+(numMessages,numError,numWarning):=countMessages();
+getErrorString();
+if b and numError==0 and numWarning==0 then
+  exit(0);
+end if;
+exit(1);
+EOF
+omc check.mos
+'''
           }
         }
         stage('moparser') {
