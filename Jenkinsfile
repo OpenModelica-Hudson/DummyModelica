@@ -6,7 +6,7 @@ pipeline {
         stage('OpenModelica') {
           agent {
             docker {
-              image 'openmodelica/openmodelica:nightly'
+              image 'openmodelica/openmodelica:v1.12.0'
             }
           }
           steps {
