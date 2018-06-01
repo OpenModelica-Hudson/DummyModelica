@@ -5,5 +5,5 @@ before_install:
   - time docker pull openmodelica/openmodelica:v1.12.0-minimal
   - time docker pull openmodelica/moparser:xenial
 script:
-  - docker run -v "$PWD:$PWD" openmodelica/openmodelica:v1.12.0-minimal omc --help
-  - docker run -v "$PWD:$PWD" openmodelica/moparser moparser -r -v 2.2 BioChem
+  - docker run openmodelica/openmodelica:v1.12.0-minimal omc check.mos
+  - docker run openmodelica/moparser moparser -r -v 2.2 BioChem
